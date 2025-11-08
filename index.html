@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SimpleWeather - Modern Weather App</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2C097F",
+              "background-light": "#f6f6f8",
+              "background-dark": "#151022",
+              "text-light": "#333333",
+              "text-dark": "#e5e7eb",
+              "text-secondary-light": "#777777",
+              "text-secondary-dark": "#9ca3af",
+              "card-light": "#ffffff",
+              "card-dark": "#1f2937",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
+            },
+            fontFamily: { display: "Inter" },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="font-display">
+    <div
+      class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header
+          class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-6 sm:px-10 py-4"
+        >
+          <div
+            class="flex items-center gap-3 text-text-light dark:text-text-dark"
+          >
+            <span class="material-symbols-outlined text-primary text-3xl"
+              >thermostat</span
+            >
+            <h2
+              class="text-text-light dark:text-text-dark text-xl font-bold leading-tight tracking-[-0.015em]"
+            >
+              SimpleWeather
+            </h2>
+         
+        </header>
+        <main class="flex flex-1 justify-center py-5 px-4 sm:px-6">
+          <div
+            class="layout-content-container flex flex-col w-full max-w-2xl flex-1 items-center"
+          >
+            <h1
+              class="text-text-light dark:text-text-dark tracking-light text-3xl md:text-4xl font-bold leading-tight text-center pb-4 pt-8 sm:pt-12"
+            >
+              Find the weather in your city
+            </h1>
+            <div
+              class="flex flex-col sm:flex-row w-full max-w-lg items-stretch gap-3 px-4 py-3"
+            >
+              <label class="flex flex-col flex-1">
+                <div
+                  class="flex w-full flex-1 items-stretch rounded-lg shadow-sm"
+                >
+                  <span
+                    class="text-text-secondary-light dark:text-text-secondary-dark flex border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark items-center justify-center pl-4 rounded-l-lg border-r-0"
+                  >
+                    <span class="material-symbols-outlined">search</span>
+                  </span>
+                  <input
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-light dark:text-text-dark focus:outline-none focus:ring-2 focus:ring-primary/50 border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark h-14 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-3.5 text-base font-normal leading-normal border-l-0"
+                    placeholder="Enter City Name"
+                    value=""
+                    id="city"
+                  />
+                </div>
+              </label>
+              <button
+                class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark transition-colors"
+                id="fetchBtn"
+              >
+                <span class="truncate">Search Weather</span>
+              </button>
+            </div>
+            <div class="w-full max-w-lg p-4 @container mt-8">
+                <h1 id="loading" class="hidden text-2xl text-center">Loading...</h1>
+              <div
+                class="dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 flex flex-col items-center justify-start rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] text-center p-8 hidden"
+                style="
+                  background-image: linear-gradient(
+                    135deg,
+                    #e0f7fa 0%,
+                    #ffffff 100%
+                  );
+                "
+                id="result"
+             
+              >
+               
+                <!-- results -->
+              </div>
+              <div id="error" class="text-red-600 text-2xl text-center"></div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="weather.js"></script>
+  </body>
+</html>
